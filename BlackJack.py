@@ -3,6 +3,7 @@
 #BlackJack Beta Version in Streamlit
 import random
 import streamlit as st
+import pandas as pd
 
 
 
@@ -205,7 +206,7 @@ def one_hand_blackjack_simulator():
 
 st.write("---")
 decks = st.number_input("Enter number of decks: ", min_value = 1, step = 1, value = 6)
-number_of_games = st.number_input("Enter number of simulations: ", min_value = 1, step = 1, value = 100000)
+number_of_games = st.number_input("Enter number of simulations: ", min_value = 1, step = 1, value = 1000)
 card_cut = st.number_input("Enter where in the shoe the cut card is positioned (enter number between greater than 0.2 and less than 1): ", min_value = 0.2, max_value = 0.99, step = 0.01, value = 0.5)
 # If dealer get the followings, hit until get which number
 if_2 = st.number_input("If dealer gets 2 hit until you reach: ", min_value = 2, max_value = 21, step = 1, value = 13)
@@ -221,19 +222,41 @@ if_A = st.number_input("If dealer gets A hit until you reach: ", min_value = 2, 
 count_player = 0
 count_dealer = 0
 count_push = 0
-for i in range(number_of_games):
-    if i == 0:
-        lis = shuffle_cards(decks)
-    elif len(lis) <= decks*52*card_cut:
-        lis = shuffle_cards(decks)
-    result = (one_hand_blackjack_simulator())
-    if result == "Player":
-        count_player += 1
-    elif result == "Dealer":
-        count_dealer += 1
-    else:
-        count_push += 1
-st.write(f"Player won {count_player}, lost {count_dealer} and pushed {count_push} hands. Just won {count_player*100/number_of_games}% of the games")
+
+wins = [0]
+losses = [0]
+ties = [0]
+
+if st.button("Click to start"):
+    for i in range(number_of_games):
+        if i == 0:
+            lis = shuffle_cards(decks)
+        elif len(lis) <= decks*52*card_cut:
+            lis = shuffle_cards(decks)
+        result = (one_hand_blackjack_simulator())
+        if result == "Player":
+            count_player += 1
+            wins.append(wins[-1]+1)
+            losses.append(losses[-1])
+            ties.append(ties[-1])
+        elif result == "Dealer":
+            count_dealer += 1
+            losses.append(losses[-1]+1)
+            wins.append(wins[-1])
+            ties.append(ties[-1])
+        else:
+            count_push += 1
+            ties.append(ties[-1]+1)
+            wins.append(wins[-1])
+            losses.append(losses[-1])
+    dickeys = {"wins": wins,
+               "losses": losses,
+               "ties": ties}
+    dataframe = pd.DataFrame(dickeys)
+    st.write(f"Player won {count_player}, lost {count_dealer} and pushed {count_push} hands. Just won {count_player*100/number_of_games}% of the games")
+    st.line_chart(dataframe, width=0, height=0, use_container_width=True)
+
+
 
     
 
