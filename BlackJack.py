@@ -11,6 +11,7 @@ import pandas as pd
 st.set_page_config(page_title="BlackJack Beta Version",page_icon=":game_die:", layout="centered")
 # "st.session_state object:", st.session_state
 
+
 st.title(":blue[Welcome to The BlackJack Simulator]")
 st.text("""This blackJack is inspired in Las Vegas BlackJack 
 As this program measures the probability of winning single hands, there in no 
@@ -249,10 +250,10 @@ if st.button("Click to start"):
             ties.append(ties[-1]+1)
             wins.append(wins[-1])
             losses.append(losses[-1])
-    dickeys = {"wins": wins,
+    dicc_keys = {"wins": wins,
                "losses": losses,
                "ties": ties}
-    dataframe = pd.DataFrame(dickeys)
+    dataframe = pd.DataFrame(dicc_keys)
     st.write(f"Player won {count_player}, lost {count_dealer} and pushed {count_push} hands. Just won {count_player*100/number_of_games}% of the games")
     st.line_chart(dataframe, width=0, height=0, use_container_width=True)
 
