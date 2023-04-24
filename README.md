@@ -5,7 +5,7 @@ Users have freedom to choose the number of decks, number of simulations, positio
 
 This simulators uses real world probability in order to give the most accurate results. For instance, the probability of getting a card will always change if the card was already withdrawn from the deck.
 
-#Why Blackjack?
+# Why Blackjack?
 
 Blackjack has a special behaviour that makes it different to other gambling games and is that the probability of getting a card changes every times a card is pulled. Other games like roulette, poker, or dice related has a different statistical behaviour as the chances of getting any result is always the same over time (i.e for most poker tables cards are re-shuffled every game) making Blackjack a little bit more manipulative than other games.
 
