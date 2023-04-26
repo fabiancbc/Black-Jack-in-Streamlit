@@ -7,6 +7,6 @@ This simulators uses real world probability in order to give the most accurate r
 
 # Why Blackjack?
 
-Blackjack has a special behaviour that makes it different to other gambling games and is that the probability of getting a card changes every times a card is pulled. Other games like roulette, poker, or dice related has a different statistical behaviour as the chances of getting any result is always the same over time (i.e for most poker tables cards are re-shuffled every game) making Blackjack a little bit more manipulative than other games.
+Blackjack has a special behaviour that makes it different from other gambling games and is that the probability of getting a card changes every times a card is pulled. Other games like roulette, poker, or dice related has a different statistical behaviour as the chances of getting any result is always the same over time (i.e for most poker tables cards are re-shuffled every game) making Blackjack a little bit more manipulative than other games.
 
 In addion, Blackjack has another interesting feature and it is that the dealer behaves as a machine as they do not have decision in somebody's game. This makes de simulation easier to be programmed and also more predictable and accurate for a real life game.
