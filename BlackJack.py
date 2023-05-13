@@ -269,7 +269,6 @@ def one_hand_blackjack_simulator2():
         dealer_deck.append(functd[1])
         partial += functd[1]
         time.sleep(2)
-        st.write(f":red[Dealer] got a :red[{functd[0]}] for a new total of :red[{partial}]")
         if partial > 21:
 
             for i in range(len(dealer_deck)):
@@ -278,6 +277,7 @@ def one_hand_blackjack_simulator2():
                     dealer_deck[i] = 1
                 if partial < 22:
                     break
+        st.write(f":red[Dealer] got a :red[{functd[0]}] for a new total of :red[{partial}]")
 
     if partial > player_total:
         if partial > 21:
@@ -318,7 +318,7 @@ This is a single player simulator
             (Cutting card is where the dealer will stop and re-shuffle the 
              decks so no counting cards happens in casinos)
         4. Enter for each possible scenario where you want to stop the simulator
-            to hit. (Deffault values are provided and is the most recommended 
+            from hitting. (Deffault values are provided and is the most recommended 
             strategy regarding to 
             https://www.cs.mcgill.ca/~rwest/wikispeedia/wpcd/wp/b/Blackjack.htm)
         """)

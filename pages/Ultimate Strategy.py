@@ -235,7 +235,7 @@ def one_hand_blackjack_simulator():
     else:
         return "Push"
     
-    
+st.title(":orange[Ultimate Strategy]")  
     
 decks = st.number_input("Enter number of decks: ", min_value = 1, step = 1, value = 6)
 number_of_games = st.number_input("Enter number of simulations: ", min_value = 1, step = 1, value = 100)

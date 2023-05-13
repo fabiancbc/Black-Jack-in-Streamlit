@@ -237,6 +237,22 @@ def one_hand_blackjack_simulator():
     
     
 st.title(":orange[Counting Cards Simulator]")    
+st.text("""Probably you have heard of counting cards in Blackjack. People have always tried to
+    find ways to beat the system and counting cards is probably one of the most 
+    known ways to achieve this.
+        
+The Counting Card System is an integral part of blackjack, designed to track
+    the relative concentration of high and low cards in the deck during
+     gameplay.
+        
+This project will compare the most used counting strategy which is the hi-lo, with
+    the most precise one which is griffin ultimate griffin system and also will 
+    display the true count which is the count divided by the number of decks.
+    
+
+    
+
+        """)
 decks = st.number_input("Enter number of decks: ", min_value = 1, step = 1, value = 6)
 number_of_games = st.number_input("Enter number of simulations: ", min_value = 1, step = 1, value = 100)
 card_cut = st.number_input("Enter where in the shoe the cut card is positioned (enter number between greater than 0.2 and less than 1): ", min_value = 0.2, max_value = 0.99, step = 0.01, value = 0.5)
@@ -313,3 +329,14 @@ if st.button("Click to start"):
     st.line_chart(dataframe, width=0, height=0, use_container_width=True)
     st.line_chart(counting_dataframe, width=0, height=0, use_container_width=True)
     st.line_chart(counting_dataframe2, width=0, height=0, use_container_width=True)
+    
+    st.text("""After running any number of simulations, you will see that both streategies
+        behave significally similar even though the hi-lo uses a -1,0 or +1
+        depending on results, while the ultimate griffing system uses
+        different values ranging from +70 to -50.
+        
+When looking at the results, we can conlude that if somebody wants
+    to count cards, the hi-lo strategy is as effective as 
+    the Griffin ultimate strategy while keeping iteasier to follow.
+        """)
+
