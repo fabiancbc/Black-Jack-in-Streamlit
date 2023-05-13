@@ -236,7 +236,7 @@ def one_hand_blackjack_simulator():
         return "Push"
     
     
-    
+st.title(":orange[Counting Cards Simulator]")    
 decks = st.number_input("Enter number of decks: ", min_value = 1, step = 1, value = 6)
 number_of_games = st.number_input("Enter number of simulations: ", min_value = 1, step = 1, value = 100)
 card_cut = st.number_input("Enter where in the shoe the cut card is positioned (enter number between greater than 0.2 and less than 1): ", min_value = 0.2, max_value = 0.99, step = 0.01, value = 0.5)

@@ -256,14 +256,14 @@ count_dealer = 0
 count_push = 0
 
 
-money = [100]
-money2 = [100]
+money = [1000]
+money2 = [1000]
 
 wins = [0]
 losses = [0]
 ties = [0]
-bet=5
-bet2 = 5
+bet = 10
+bet2 = 10
 if st.button("Click to start"):
     hi_lo_count = [0]
     griffin_ultimate_count = [0]
@@ -271,43 +271,52 @@ if st.button("Click to start"):
     griffin_ultimate_true = [0]
     decks_remaining = decks
     for i in range(number_of_games):
-        if decks == 2:
-            bet = 5
-            if hi_lo_true[-1] >= 5:
-                if_2 = 12
-                if_3 = 12
-                if_4 = 12
-                if_5 = 12
-                if_6 = 12
-                if_7 = 12
-                if_8 = 12
-                if_9 = 12
-                if_10 = 12
-                if_A = 12
-                bet = 10
-            # elif hi_lo_true[-1] > 4:
-            #     if_2 = 13
-            #     if_3 = 13
-            #     if_4 = 12
-            #     if_5 = 12
-            #     if_6 = 12
-            #     if_7 = 12
-            #     if_8 = 12
-            #     if_9 = 12
-            #     if_10 = 17
-            #     if_A = 17
-            elif hi_lo_true[-1] <= -5:
-                if_2 = 16
-                if_3 = 16
-                if_4 = 16
-                if_5 = 16
-                if_6 = 16
-                if_7 = 19
-                if_8 = 19
-                if_9 = 19
-                if_10 = 19
-                if_A = 19
-                bet = 0
+        bet = 10*(hi_lo_true[-1]-1)
+        if bet<10:
+            bet = 10
+        else:
+            pass
+        # if decks == 2:
+        if hi_lo_true[-1] >= 5:
+            if_2 = 12
+            if_3 = 12
+            if_4 = 12
+            if_5 = 12
+            if_6 = 12
+            if_7 = 12
+            if_8 = 12
+            if_9 = 12
+            if_10 = 12
+            if_A = 12
+            # bet = 120
+        # elif hi_lo_true[-1] > 4:
+        #     if_2 = 13
+        #     if_3 = 13
+        #     if_4 = 12
+        #     if_5 = 12
+        #     if_6 = 12
+        #     if_7 = 12
+        #     if_8 = 12
+        #     if_9 = 12
+        #     if_10 = 17
+        #     if_A = 17
+        # elif hi_lo_true[-1] <= -1:
+        #     bet = 0
+            
+        elif hi_lo_true[-1] <= -5:
+            if_2 = 16
+            if_3 = 16
+            if_4 = 16
+            if_5 = 16
+            if_6 = 16
+            if_7 = 19
+            if_8 = 19
+            if_9 = 19
+            if_10 = 19
+            if_A = 19
+            bet = 10
+        else:
+            pass
 
         if i == 0:
             lis = shuffle_cards(decks)
@@ -356,10 +365,8 @@ if st.button("Click to start"):
                   "Money no Strategy": money2}
     dataframe = pd.DataFrame(dicc_keys)
     counting_dataframe = pd.DataFrame(dicc_keys2)
-    counting_dataframe2 = pd.DataFrame(dicc_keys3)
     money_dataframe = pd.DataFrame(dicc_keys4)
     st.write(f"Player won {count_player}, lost {count_dealer} and pushed {count_push} hands. Just won {count_player*100/number_of_games}% of the games")
     st.line_chart(dataframe, width=0, height=0, use_container_width=True)
     st.line_chart(counting_dataframe, width=0, height=0, use_container_width=True)
-    st.line_chart(counting_dataframe2, width=0, height=0, use_container_width=True)
     st.line_chart(money_dataframe, width=0, height=0, use_container_width=True)
