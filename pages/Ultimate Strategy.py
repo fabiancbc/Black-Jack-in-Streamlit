@@ -16,7 +16,7 @@ def shuffle_cards(sets):
 
 
 
-def int_to_card(lis,hi_lo_count,grifin_ultimate_count):
+def int_to_card(lis,hi_lo_count):
     # Replace each None with the correct values
 
     card1 = random.choice(lis)
@@ -25,80 +25,66 @@ def int_to_card(lis,hi_lo_count,grifin_ultimate_count):
     if card1 == 2:
         hi_lo_count.append(1+hi_lo_count[-1])
         hi_lo_true.append(hi_lo_count[-1]/decks_remaining)
-        griffin_ultimate_count.append(37+griffin_ultimate_count[-1])
-        griffin_ultimate_true.append(griffin_ultimate_count[-1]/decks_remaining)
     elif card1 == 3:
         hi_lo_count.append(1+hi_lo_count[-1])
         hi_lo_true.append(hi_lo_count[-1]/decks_remaining)
-        griffin_ultimate_count.append(45+griffin_ultimate_count[-1])
-        griffin_ultimate_true.append(griffin_ultimate_count[-1]/decks_remaining)
+
     elif card1 == 4:
         hi_lo_count.append(1+hi_lo_count[-1])
         hi_lo_true.append(hi_lo_count[-1]/decks_remaining)
-        griffin_ultimate_count.append(52+griffin_ultimate_count[-1])
-        griffin_ultimate_true.append(griffin_ultimate_count[-1]/decks_remaining)
+
     elif card1 == 5:
         hi_lo_count.append(1+hi_lo_count[-1])
         hi_lo_true.append(hi_lo_count[-1]/decks_remaining)
-        griffin_ultimate_count.append(70+griffin_ultimate_count[-1])
-        griffin_ultimate_true.append(griffin_ultimate_count[-1]/decks_remaining)
+
     elif card1 == 6:
         hi_lo_count.append(1+hi_lo_count[-1])
         hi_lo_true.append(hi_lo_count[-1]/decks_remaining)
-        griffin_ultimate_count.append(46+griffin_ultimate_count[-1])
-        griffin_ultimate_true.append(griffin_ultimate_count[-1]/decks_remaining)
+
     elif card1 == 7:
         hi_lo_count.append(0+hi_lo_count[-1])
         hi_lo_true.append(hi_lo_count[-1]/decks_remaining)
-        griffin_ultimate_count.append(27+griffin_ultimate_count[-1])
-        griffin_ultimate_true.append(griffin_ultimate_count[-1]/decks_remaining)
+
     elif card1 == 8:
         hi_lo_count.append(0+hi_lo_count[-1])
         hi_lo_true.append(hi_lo_count[-1]/decks_remaining)
-        griffin_ultimate_count.append(0+griffin_ultimate_count[-1])
-        griffin_ultimate_true.append(griffin_ultimate_count[-1]/decks_remaining)
+
     elif card1 == 9:
         hi_lo_count.append(0+hi_lo_count[-1])
         hi_lo_true.append(hi_lo_count[-1]/decks_remaining)
-        griffin_ultimate_count.append(-17+griffin_ultimate_count[-1])
-        griffin_ultimate_true.append(griffin_ultimate_count[-1]/decks_remaining)
+
         
     if card1 == 10:
         value1 = 10
         card1 = "10"
         hi_lo_count.append(-1+hi_lo_count[-1])
         hi_lo_true.append(hi_lo_count[-1]/decks_remaining)
-        griffin_ultimate_count.append(-50+griffin_ultimate_count[-1])
-        griffin_ultimate_true.append(griffin_ultimate_count[-1]/decks_remaining)
+
         
     elif card1 == 11:
         value1 = 10
         card1 = "J"
         hi_lo_count.append(-1+hi_lo_count[-1])
         hi_lo_true.append(hi_lo_count[-1]/decks_remaining)
-        griffin_ultimate_count.append(-50+griffin_ultimate_count[-1])
-        griffin_ultimate_true.append(griffin_ultimate_count[-1]/decks_remaining)
+
     elif card1 == 12:
         value1 = 10
         card1 = "Q"
         hi_lo_count.append(-1+hi_lo_count[-1])
         hi_lo_true.append(hi_lo_count[-1]/decks_remaining)
-        griffin_ultimate_count.append(-50+griffin_ultimate_count[-1])
-        griffin_ultimate_true.append(griffin_ultimate_count[-1]/decks_remaining)
+
     elif card1 == 13:
         value1 = 10
         card1 = "K"
         hi_lo_count.append(-1+hi_lo_count[-1])
         hi_lo_true.append(hi_lo_count[-1]/decks_remaining)
-        griffin_ultimate_count.append(-50+griffin_ultimate_count[-1])
-        griffin_ultimate_true.append(griffin_ultimate_count[-1]/decks_remaining)
+
     elif card1 == 14:
         value1 = 11
         card1 = "A"
         hi_lo_count.append(-1+hi_lo_count[-1])
         hi_lo_true.append(hi_lo_count[-1]/decks_remaining)
-        griffin_ultimate_count.append(-60+griffin_ultimate_count[-1])
-        griffin_ultimate_true.append(griffin_ultimate_count[-1]/decks_remaining)
+
     else:
         value1 = card1
         card1 = f"{card1}"
@@ -110,10 +96,10 @@ def int_to_card(lis,hi_lo_count,grifin_ultimate_count):
 
 def deal_hand_player(player_name,lis):
 
-    funct = int_to_card(lis,hi_lo_count,griffin_ultimate_count)
+    funct = int_to_card(lis,hi_lo_count)
     card1 = funct[0]
     total1 = funct[1]
-    funct2 = int_to_card(lis,hi_lo_count,griffin_ultimate_count)
+    funct2 = int_to_card(lis,hi_lo_count)
     card2 = funct2[0]
     total2 = funct2[1]
     total = total1 + total2
@@ -194,7 +180,7 @@ def one_hand_blackjack_simulator():
             else:
                 break
 
-        player_hit = int_to_card(lis,hi_lo_count,griffin_ultimate_count)
+        player_hit = int_to_card(lis,hi_lo_count)
         player_deck.append(player_hit[1])
         player_total += player_hit[1]
 
@@ -210,7 +196,7 @@ def one_hand_blackjack_simulator():
 
     partial = dealer[0]
     while partial < 17 and player_total < 21:
-        functd = int_to_card(lis,hi_lo_count,griffin_ultimate_count)
+        functd = int_to_card(lis,hi_lo_count)
         dealer_deck.append(functd[1])
         partial += functd[1]
         if partial > 21:
@@ -273,9 +259,7 @@ bet2 = 10
 
 if st.button("Click to start"):
     hi_lo_count = [0]
-    griffin_ultimate_count = [0]
     hi_lo_true = [0]
-    griffin_ultimate_true = [0]
     decks_remaining = decks
     for i in range(number_of_games):
 
@@ -300,8 +284,6 @@ if st.button("Click to start"):
             lis = shuffle_cards(decks)
         elif len(lis) <= decks*52*card_cut:
             lis = shuffle_cards(decks)
-            griffin_ultimate_count.append(0)
-            griffin_ultimate_true.append(0)
             hi_lo_true.append(0)
             hi_lo_count.append(0)
             
@@ -336,11 +318,10 @@ if st.button("Click to start"):
     dicc_keys = {"wins": wins,
                "losses": losses,
                "ties": ties}
-    dicc_keys2 = {"Hi-Lo Count System": hi_lo_count,
+    dicc_keys2 = {
                   "Hi-Lo True Count": hi_lo_true}
     
-    dicc_keys3 = {"Griffin Ultimate Count System": griffin_ultimate_count,
-                  "Griffin Ultimate True Count": griffin_ultimate_true}
+
     dicc_keys4 = {"Money Following Strategy" : money,
                   "Money no Strategy": money2}
     dataframe = pd.DataFrame(dicc_keys)
