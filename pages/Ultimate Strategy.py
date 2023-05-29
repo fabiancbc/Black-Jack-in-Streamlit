@@ -221,7 +221,6 @@ def one_hand_blackjack_simulator():
                     dealer_deck[i] = 1
                 if partial < 22:
                     break
-
     if partial > player_total:
         if partial > 21:
             return "Player"
@@ -236,10 +235,17 @@ def one_hand_blackjack_simulator():
         return "Push"
     
 st.title(":orange[Ultimate Strategy]")  
-    
+st.write("""The ultimate strategy combines the basic streategy (When to hit or stand)
+with the Hi-Lo counting card system which basically tell the users
+how to bet when they have a favorable or unfavorable true count.
+When true count of -1 or less, the bet will be 0. When true 
+count is 1, bet is 1.5 times original bet. When 2, 2 times original
+bet. when true count 3, 2.5 times original bet. This will continue
+until true count of 6 or more where be is bet times 4.
+         """)   
 decks = st.number_input("Enter number of decks: ", min_value = 1, step = 1, value = 6)
 number_of_games = st.number_input("Enter number of simulations: ", min_value = 1, step = 1, value = 100)
-card_cut = st.number_input("Enter where in the shoe the cut card is positioned (enter number between greater than 0.2 and less than 1): ", min_value = 0.2, max_value = 0.99, step = 0.01, value = 0.5)
+card_cut = st.number_input("Enter where in the shoe the cut card is positioned (enter number between greater than 0.2 and less than 1): ", min_value = 0.2, max_value = 0.99, step = 0.01, value = 0.3)
 # If dealer get the followings, hit until get which number
 if_2 = 13
 if_3 = 13
@@ -264,6 +270,7 @@ losses = [0]
 ties = [0]
 bet = 10
 bet2 = 10
+
 if st.button("Click to start"):
     hi_lo_count = [0]
     griffin_ultimate_count = [0]
@@ -271,53 +278,24 @@ if st.button("Click to start"):
     griffin_ultimate_true = [0]
     decks_remaining = decks
     for i in range(number_of_games):
-        bet = 10*(hi_lo_true[-1]-1)
-        if bet<10:
-            bet = 10
-        else:
-            pass
-        # if decks == 2:
-        if hi_lo_true[-1] >= 5:
-            if_2 = 12
-            if_3 = 12
-            if_4 = 12
-            if_5 = 12
-            if_6 = 12
-            if_7 = 12
-            if_8 = 12
-            if_9 = 12
-            if_10 = 12
-            if_A = 12
-            # bet = 120
-        # elif hi_lo_true[-1] > 4:
-        #     if_2 = 13
-        #     if_3 = 13
-        #     if_4 = 12
-        #     if_5 = 12
-        #     if_6 = 12
-        #     if_7 = 12
-        #     if_8 = 12
-        #     if_9 = 12
-        #     if_10 = 17
-        #     if_A = 17
-        # elif hi_lo_true[-1] <= -1:
-        #     bet = 0
-            
-        elif hi_lo_true[-1] <= -5:
-            if_2 = 16
-            if_3 = 16
-            if_4 = 16
-            if_5 = 16
-            if_6 = 16
-            if_7 = 19
-            if_8 = 19
-            if_9 = 19
-            if_10 = 19
-            if_A = 19
-            bet = 10
-        else:
-            pass
 
+        bet = 10
+        if round(hi_lo_true[-1]) == 1:
+            bet = bet*1.5
+        elif round(hi_lo_true[-1]) == 2:
+            bet = bet*2
+        elif round(hi_lo_true[-1]) == 3:
+            bet = bet * 2.5
+        elif round(hi_lo_true[-1]) == 4:
+            bet = bet * 3
+        elif round(hi_lo_true[-1]) == 5:
+            bet = bet*3.5
+        elif round(hi_lo_true[-1]) >=6:
+            bet = bet*4
+        elif round(hi_lo_true[-1]) <= -1:
+            bet = bet*0
+        else:
+            pass
         if i == 0:
             lis = shuffle_cards(decks)
         elif len(lis) <= decks*52*card_cut:
@@ -350,10 +328,11 @@ if st.button("Click to start"):
             losses.append(losses[-1])
             money.append(money[-1])
             money2.append(money2[-1])
-        
-        
-        
-        
+
+
+
+            
+
     dicc_keys = {"wins": wins,
                "losses": losses,
                "ties": ties}
