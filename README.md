@@ -1,5 +1,5 @@
 # Black Jack in Streamlit
-Access the app by clicking the following link -> https://fabiancbc-black-jack-in-streamlit-blackjack-8v7iu6.streamlit.app/
+Access the app by clicking the following link -> https://blackjacksimulator.streamlit.app/
 ## Overview
 Users have freedom to choose the number of decks, number of simulations, position of cutting card, and use their own strategy in order to get results such as percentage of wins, and amount of money earned or lost after a number of simulations. This simulator will also use techniques such as card counting and an automated system where after a certain amount of card counter the bet can increase or decrease in order to find the most optimum strategy and guarantee wins.
 
